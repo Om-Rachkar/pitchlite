@@ -29,13 +29,11 @@
       </div>
       
       <div class="header-actions">
-        <!-- Language Toggle -->
         <div class="lang-toggle">
           <button class="lang-btn active" id="btn-en" onclick="setLanguage('en')">English</button>
           <button class="lang-btn" id="btn-hi" onclick="setLanguage('hi')">हिंदी</button>
         </div>
         
-        <!-- Theme Toggle -->
         <button class="btn theme-toggle" onclick="toggleTheme()" title="Toggle theme">
           <span id="theme-icon">☀️</span>
         </button>
@@ -47,6 +45,7 @@
     <div class="tab-bar">
       <button class="tab-btn active" data-tab="builder" id="tab-builder-btn">Builder</button>
       <button class="tab-btn" data-tab="preview" id="tab-preview-btn">Preview</button>
+      <button class="tab-btn" data-tab="ask" id="tab-ask-btn">Ask</button>
       <button class="tab-btn" data-tab="saved" id="tab-saved-btn">Saved pitches</button>
     </div>
  
@@ -93,18 +92,14 @@
             <button class="btn btn-speak" id="speak-btn" onclick="toggleSpeech()">
               <span id="speak-icon">▶️</span> <span id="speak-text">Read Aloud</span>
             </button>
-            <button class="btn" id="copy-btn" onclick="copyPitch()">📋 <span id="copy-text">Copy</span></button>
-            <button class="btn btn-primary" id="save-btn" onclick="savePitch()">
+            <button class="btn" id="copy-btn">📋 <span id="copy-text">Copy</span></button>
+            <button class="btn btn-primary" id="save-btn">
               <span id="save-text">Save pitch</span>
             </button>
           </div>
         </div>
         
         <div class="final-pitch"><p id="final-text"></p></div>
-        
-        <div class="speech-progress" id="speech-progress" style="display:none;">
-          <div class="speech-bar" id="speech-bar"></div>
-        </div>
         
         <div class="timer-bar"><div class="timer-fill" id="timer-fill" style="width:0%"></div></div>
         <div class="timer-row">
@@ -116,6 +111,78 @@
       <div style="margin-top:1rem">
         <div style="font-size:13px;font-weight:600;margin-bottom:10px" class="section-label" id="breakdown-label">Structure breakdown</div>
         <div class="breakdown-grid" id="breakdown-cards"></div>
+      </div>
+    </div>
+
+    <!-- ASK TAB -->
+    <div id="tab-ask" class="view">
+      <div class="ask-mode-toggle">
+        <button class="mode-btn active" id="mode-chat" onclick="setAskMode('chat')">
+          <span>💬</span> <span id="mode-chat-text">Chat</span>
+        </button>
+        <button class="mode-btn" id="mode-prep" onclick="setAskMode('prep')">
+          <span>📋</span> <span id="mode-prep-text">Q&A Prep</span>
+        </button>
+      </div>
+
+      <!-- CHAT MODE -->
+      <div id="ask-chat-mode" class="ask-mode-content active">
+        <div class="card chat-card">
+          <div class="chat-header">
+            <div class="chat-title" id="ask-title">Ask about your pitch</div>
+            <div class="chat-subtitle" id="ask-subtitle">Get answers based on your pitch content</div>
+          </div>
+          
+          <div class="chat-messages" id="chat-messages">
+            <div class="chat-welcome" id="chat-welcome">
+              <div class="welcome-icon">💬</div>
+              <div class="welcome-text" id="welcome-text">Ask me anything about your pitch!</div>
+            </div>
+          </div>
+          
+          <div class="quick-questions" id="quick-questions">
+            <div class="quick-label" id="quick-label">Quick questions:</div>
+            <div class="quick-chips" id="quick-chips"></div>
+          </div>
+          
+          <div class="chat-input-area">
+            <input type="text" id="chat-input" class="chat-input" placeholder="Type your question..." />
+            <button class="btn btn-primary chat-send-btn" onclick="sendQuestion()" id="send-btn">
+              <span id="send-text">Send</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q&A PREP MODE -->
+      <div id="ask-prep-mode" class="ask-mode-content">
+        <div class="card">
+          <div class="prep-header">
+            <div class="prep-title" id="prep-title">Expected Questions & Answers</div>
+            <div class="prep-subtitle" id="prep-subtitle">Prepare for these common investor/founder questions</div>
+          </div>
+          
+          <div class="prep-stats" id="prep-stats">
+            <div class="stat-item">
+              <div class="stat-number" id="total-questions">12</div>
+              <div class="stat-label" id="stat-total">Total Questions</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number" id="ready-answers">0</div>
+              <div class="stat-label" id="stat-ready">Ready to Answer</div>
+            </div>
+          </div>
+
+          <div class="prep-filters" id="prep-filters">
+            <button class="filter-btn active" onclick="filterQuestions('all')" id="filter-all">All</button>
+            <button class="filter-btn" onclick="filterQuestions('basic')" id="filter-basic">Basic</button>
+            <button class="filter-btn" onclick="filterQuestions('investor')" id="filter-investor">Investor</button>
+            <button class="filter-btn" onclick="filterQuestions('technical')" id="filter-technical">Technical</button>
+            <button class="filter-btn" onclick="filterQuestions('market')" id="filter-market">Market</button>
+          </div>
+
+          <div class="qa-list" id="qa-list"></div>
+        </div>
       </div>
     </div>
  

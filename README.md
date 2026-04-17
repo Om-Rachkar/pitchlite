@@ -23,6 +23,7 @@ Pitchlite guides you through the process of turning ideas into clear summaries.
 - Export Options: Copy, save.
 - Responsive Design: Works seamlessly on desktop.
 - Pitches in 60 seconds.
+- Q&A Related to Pitch.
   
 ---
 

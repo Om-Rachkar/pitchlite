@@ -1,6 +1,6 @@
 PITCHLITE
-A One-Minute Pitch Builder
-TEAM HACKOHOLICS
+-A One-Minute Pitch Builder
+:TEAM HACKOHOLICS
 ---
 
 PROBLEM STATEMENT:
@@ -49,9 +49,9 @@ Live preview with speech playback,copy to clipboard, and save options for immedi
   
 ---
 Team Hackoholics:
-Sujal Chaudhari
-Rasika Chavan 
-Om Rachkar
+Sujal Chaudhari,
+Rasika Chavan, 
+Om Rachkar,
 Aditi Vishwase
 ---
 

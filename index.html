@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PitchLite – One-Minute Pitch Builder</title>
+ 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
+ 
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+ 
+  <div class="app">
+ 
+    <div class="header">
+      <div class="logo-row">
+        <div class="logo-icon">
+          <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 15L6 9l3 3 3-5 4 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div>
+          <div class="logo-text">PitchLite</div>
+          <div class="logo-sub" id="app-subtitle">One-minute pitch builder</div>
+        </div>
+      </div>
+      
+      <div class="header-actions">
+        <!-- Language Toggle -->
+        <div class="lang-toggle">
+          <button class="lang-btn active" id="btn-en" onclick="setLanguage('en')">English</button>
+          <button class="lang-btn" id="btn-hi" onclick="setLanguage('hi')">हिंदी</button>
+        </div>
+        
+        <!-- Theme Toggle -->
+        <button class="btn theme-toggle" onclick="toggleTheme()" title="Toggle theme">
+          <span id="theme-icon">☀️</span>
+        </button>
+        
+        <button class="btn" onclick="resetPitch()">+ <span id="new-btn-text">New pitch</span></button>
+      </div>
+    </div>
+ 
+    <div class="tab-bar">
+      <button class="tab-btn active" data-tab="builder" id="tab-builder-btn">Builder</button>
+      <button class="tab-btn" data-tab="preview" id="tab-preview-btn">Preview</button>
+      <button class="tab-btn" data-tab="saved" id="tab-saved-btn">Saved pitches</button>
+    </div>
+ 
+    <div id="tab-builder" class="view active">
+      <div class="stepper" id="stepper"></div>
+      
+      <div class="selector-bar">
+        <span class="selector-label" id="style-label">Style:</span>
+        <div class="pill-row" id="style-pills">
+          <button class="pill active" data-style="standard" onclick="changeStyle('standard')">Standard</button>
+          <button class="pill" data-style="investor" onclick="changeStyle('investor')">Investor</button>
+          <button class="pill" data-style="casual" onclick="changeStyle('casual')">Casual</button>
+          <button class="pill" data-style="punch" onclick="changeStyle('punch')">Punch</button>
+          <button class="pill" data-style="vision" onclick="changeStyle('vision')">Vision</button>
+        </div>
+      </div>
+
+      <div class="selector-bar templates-bar">
+        <span class="selector-label" id="template-label">Templates:</span>
+        <div class="pill-row" id="template-pills">
+          <button class="pill template-pill" onclick="loadTemplate('saas')">SaaS Startup</button>
+          <button class="pill template-pill" onclick="loadTemplate('product')">Physical Product</button>
+          <button class="pill template-pill" onclick="loadTemplate('social')">Social Impact</button>
+          <button class="pill template-pill" onclick="loadTemplate('student')">Student Project</button>
+        </div>
+      </div>
+
+      <div class="card" id="step-card"></div>
+      
+      <div class="preview-box">
+        <div class="preview-label" id="preview-box-label">Live pitch preview</div>
+        <div class="preview-text" id="live-preview"></div>
+      </div>
+    </div>
+ 
+    <div id="tab-preview" class="view">
+      <div class="card">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:1rem">
+          <div>
+            <div style="font-size:18px;font-weight:600" id="preview-title">Your pitch</div>
+            <div id="word-badge" style="margin-top:5px"></div>
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button class="btn btn-speak" id="speak-btn" onclick="toggleSpeech()">
+              <span id="speak-icon">▶️</span> <span id="speak-text">Read Aloud</span>
+            </button>
+            <button class="btn" id="copy-btn" onclick="copyPitch()">📋 <span id="copy-text">Copy</span></button>
+            <button class="btn btn-primary" id="save-btn" onclick="savePitch()">
+              <span id="save-text">Save pitch</span>
+            </button>
+          </div>
+        </div>
+        
+        <div class="final-pitch"><p id="final-text"></p></div>
+        
+        <div class="speech-progress" id="speech-progress" style="display:none;">
+          <div class="speech-bar" id="speech-bar"></div>
+        </div>
+        
+        <div class="timer-bar"><div class="timer-fill" id="timer-fill" style="width:0%"></div></div>
+        <div class="timer-row">
+          <span class="timer-num" id="timer-num">0:00</span>
+          <span class="time-label" id="time-label">Estimated at 130 wpm</span>
+        </div>
+      </div>
+      
+      <div style="margin-top:1rem">
+        <div style="font-size:13px;font-weight:600;margin-bottom:10px" class="section-label" id="breakdown-label">Structure breakdown</div>
+        <div class="breakdown-grid" id="breakdown-cards"></div>
+      </div>
+    </div>
+ 
+    <div id="tab-saved" class="view">
+      <div id="saved-list"></div>
+    </div>
+ 
+  </div>
+ 
+  <div class="toast" id="toast"></div>
+ 
+  <script src="js/app.js"></script>
+</body>
+</html>
